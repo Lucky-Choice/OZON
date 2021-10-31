@@ -7,7 +7,11 @@ import unittest
 # setUp - перед запуском теста выводит слово  start test
 # tearDown - после теста выводит слово  finish
 # @classmethod - обявили метод класса
+# @unittest.skip("New feature CB-15777") - не поддерживается
+# @unittest.skipIf(Versoin > 0.9, "not supported") - не поддерживается при условии
 class MyTest(unittest.TestCase): 
+    Versoin = 1.0
+    
     @classmethod
     def setUpClass(cls):
         print("Before all")
@@ -24,13 +28,27 @@ class MyTest(unittest.TestCase):
 
     def test_first(self):
         print("one")
-        sum_ = 2+2
-        assert sum_ == 4
+        sum_ = 2 + 1
+        assert sum_ == 3
 
     def test_second(self):
-        print("tow")
+        print("two")
         sum_ = 2 + 2
         assert sum_ == 4    
+
+    @unittest.skip("New feature CB-15777")
+    def test_third(self):
+        print("third")
+        sum_ = 2 + 3
+        assert sum_ == 5   
+        
+    @unittest.skipIf(Versoin > 0.9, "not supported")
+    def test_four(self):
+        print("four")
+        sum_ = 2 + 5
+        assert sum_ == 7           
+
+
 
 
 # if __name__ == '__main__':
