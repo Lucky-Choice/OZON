@@ -5,7 +5,7 @@ import unittest
 class MyTest(unittest.TestCase):
     def test_first(self):
         sum_ = 2+2
-        assert sum_ == 4
+        self.assertEqual(sum_, 7)
 
 
 if __name__ == '__main__':
