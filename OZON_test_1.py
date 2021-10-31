@@ -7,8 +7,11 @@ import unittest
 # setUp - перед запуском теста выводит слово  start test
 # tearDown - после теста выводит слово  finish
 # @classmethod - обявили метод класса
+
+# Декораторы 
 # @unittest.skip("New feature CB-15777") - не поддерживается
 # @unittest.skipIf(Versoin > 0.9, "not supported") - не поддерживается при условии
+# @unittest.expectedFailure - тест не работает и мы об этом знаем(ожидаемые сбои)
 class MyTest(unittest.TestCase): 
     Versoin = 1.0
     
@@ -43,10 +46,23 @@ class MyTest(unittest.TestCase):
         assert sum_ == 5   
         
     @unittest.skipIf(Versoin > 0.9, "not supported")
-    def test_four(self):
-        print("four")
+    def test_fourth(self):
+        print("fourth")
         sum_ = 2 + 5
-        assert sum_ == 7           
+        assert sum_ == 7     
+
+    @unittest.expectedFailure
+    def test_fifth(self):
+        print("fifth")
+        sum_ = 2 + 2
+        assert sum_ == 8  
+
+    # # параметромизация
+    # def test_sixth(self):
+    #     for i in range(1,6):
+    #         with self.subTest(i=i):
+    #             self.assertGreater(i,0)
+
 
 
 
